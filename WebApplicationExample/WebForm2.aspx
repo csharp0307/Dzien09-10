@@ -54,7 +54,7 @@
             </asp:RadioButtonList>
         </div>
         <div>
-            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+            <asp:Label ID="Label1" runat="server" ForeColor="Red"></asp:Label>
         </div>
         <div>
             <asp:Button ID="Button1" runat="server" Text="Button" />
