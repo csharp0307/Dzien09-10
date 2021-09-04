@@ -11,8 +11,8 @@
         <div>
             <asp:Label ID="lbText1" runat="server" 
                 Text="Moja pierwsza labelka w ASP.NET" 
-                Font-Bold="True" Font-Size="Large" 
-                ForeColor="Lime"></asp:Label>
+                Font-Bold="True" Font-Size="Medium" 
+                ForeColor="Black"></asp:Label>
 
             <br /><br />
 

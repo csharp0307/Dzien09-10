@@ -11,12 +11,30 @@ namespace WebApplicationExample
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack)
+            {
+                
+            }
 
+            lbText1.Text = "Nagłówki HTTP:<br/>";
+            foreach (var key in Request.Headers.AllKeys)
+            {
+                lbText1.Text += $"{key} - {Request.Headers[key]}<br/>";
+            }
+            lbText1.Text += $"Metoda HTTP: {Request.HttpMethod}<br/>";
+            lbText1.Text += $"Query string: {Request.QueryString}<br/>";
+
+            lbText1.Text += "Ciasteczka:<br/>";
+            foreach (var key in Request.Cookies.AllKeys)
+            {
+                lbText1.Text += $"{key} - {Request.Cookies[key].Value}<br/>";
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
             lblResult.Text = $"Twoje imię: {tbName.Text}";
+            Response.SetCookie(new HttpCookie("name", tbName.Text));
         }
     }
 }
