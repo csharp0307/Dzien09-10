@@ -128,6 +128,7 @@
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="RegisterVisit1.aspx" />
+    <Content Include="RegisterVisit2.aspx" />
     <Content Include="VisitList.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -165,6 +166,7 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\VisitData.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -212,6 +214,13 @@
     </Compile>
     <Compile Include="RegisterVisit1.aspx.designer.cs">
       <DependentUpon>RegisterVisit1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterVisit2.aspx.cs">
+      <DependentUpon>RegisterVisit2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegisterVisit2.aspx.designer.cs">
+      <DependentUpon>RegisterVisit2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
