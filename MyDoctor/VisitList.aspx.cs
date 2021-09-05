@@ -52,6 +52,7 @@ namespace MyDoctor
                     gridView.DataBind();
 
                 }
+            }
         }
     }
 }
