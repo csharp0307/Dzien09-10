@@ -40,7 +40,7 @@ namespace MyDoctor
                     conn.Open();
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                     cmd.ExecuteNonQuery();
-                    Response.Redirect("~/VisitList");
+                    Response.Redirect("~/VisitList"); 
                 }
             }
         }
