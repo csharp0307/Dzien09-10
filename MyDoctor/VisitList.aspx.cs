@@ -49,7 +49,8 @@ namespace MyDoctor
                     cmd.ExecuteNonQuery();
 
                     //odswieżam grid
-                    gridView.DataBind();
+                    //gridView.DataBind();
+                    Response.Redirect("~/VisitList");
 
                 }
             }

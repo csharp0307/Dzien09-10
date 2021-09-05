@@ -43,6 +43,8 @@
 <ControlStyle Width="150px"></ControlStyle>
             </asp:ImageField>
 
+            <asp:HyperLinkField DataNavigateUrlFields="id" DataNavigateUrlFormatString="EditVisit.aspx?id={0}" Text="Edytuj" />
+
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:Button ID="Button1"
