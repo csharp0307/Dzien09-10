@@ -41,7 +41,7 @@
         <tr>
             <td>PESEL</td>
             <td>
-                <asp:TextBox ID="tbPESEL" Width="250px" runat="server"></asp:TextBox>
+                <asp:TextBox  ID="tbPESEL" Width="250px" runat="server"></asp:TextBox>
                 <asp:CustomValidator ID="CustomValidator1" runat="server" Display="Dynamic"
                      ErrorMessage="Podaj PESEL" ForeColor="Red" OnServerValidate="CustomValidator1_ServerValidate"
                     ControlToValidate="tbPESEL" ValidateEmptyText="True" ClientValidationFunction="isValidPesel">*</asp:CustomValidator>

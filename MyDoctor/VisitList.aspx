@@ -2,6 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h3>Lista wizyt</h3>
+
+        <asp:HyperLink ID="HyperLink2" runat="server"
+            NavigateUrl="~/RegisterVisit1.aspx">Rejestracja pacjenta</asp:HyperLink>
+
     <asp:GridView ID="gridView" runat="server" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="id" ForeColor="#333333" GridLines="None" Width="100%">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
@@ -9,13 +13,30 @@
             <asp:BoundField DataField="fname" HeaderText="Imię" SortExpression="fname" />
             <asp:BoundField DataField="lname" HeaderText="Nazwisko" SortExpression="lname" />
             <asp:BoundField DataField="pesel" HeaderText="PESEL" SortExpression="pesel" />
-            <asp:BoundField DataField="email" HeaderText="Email" SortExpression="email" />
-            <asp:BoundField DataField="doctor" HeaderText="Lekarz" SortExpression="doctor" />
+            
+            <asp:TemplateField HeaderText="Email" SortExpression="email">
+                <ItemTemplate>
+                    <asp:HyperLink ID="HyperLink3" 
+                        runat="server" 
+                        NavigateUrl='<%# Eval("email", "mailto:{0}") %>' 
+                        Text='<%# Eval("email") %>'></asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
+            
+            <asp:TemplateField HeaderText="Lekarz" SortExpression="doctor">
+                <ItemTemplate>
+                    dr
+                    <asp:Label ID="Label1" runat="server" 
+                        Text='<%# GetDoctor(Convert.ToInt32(Eval("doctor")) )  %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            
             <asp:BoundField DataField="card" HeaderText="Nr karty" SortExpression="card" />
+            
             <asp:BoundField DataField="visit_date" HeaderText="Data" SortExpression="visit_date" />
             <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
             <asp:BoundField DataField="descr" HeaderText="Opis" SortExpression="descr" />
-            <asp:BoundField DataField="image" HeaderText="Obraz" SortExpression="image" />
+            <asp:BoundField DataField="image" HeaderText="Obraz" SortExpression="image" Visible="False" />
         </Columns>
         <EditRowStyle BackColor="#999999" />
         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

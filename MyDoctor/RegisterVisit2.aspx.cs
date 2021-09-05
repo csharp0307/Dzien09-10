@@ -1,6 +1,8 @@
 ﻿using MyDoctor.App_Code;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,6 +16,11 @@ namespace MyDoctor
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["auth_user"] == null)
+            {
+                Response.Redirect("~/Login");
+            }
+
             try
             {
                 data = (VisitData)Session["RegForm"];
@@ -26,7 +33,7 @@ namespace MyDoctor
 
         protected void btnOK_Click(object sender, EventArgs e)
         {
-            String filename;
+            String filename = null;
             bool isOK = true;
 
             // obsługa uploadu pliku
@@ -55,6 +62,33 @@ namespace MyDoctor
             if (isOK)
             {
                 // realizacja zapisu do bazy danych
+                String cs =
+                ConfigurationManager.ConnectionStrings["edoctorConnectionString"].ConnectionString;
+                using (MySqlConnection conn = new MySqlConnection(cs))
+                {
+                    conn.Open();
+                    String sql = @"
+                        INSERT INTO visits
+                        (fname, lname, email, pesel, doctor, visit_date,  descr, image, card)
+                        VALUES
+                        (@fname, @lname, @email, @pesel, @doctor, @visit_date, @descr, @image, @card)
+                    ";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@fname", data.FirstName);
+                    cmd.Parameters.AddWithValue("@lname", data.LastName);
+                    cmd.Parameters.AddWithValue("@email", data.Email);
+                    cmd.Parameters.AddWithValue("@pesel", data.PESEL);
+                    cmd.Parameters.AddWithValue("@doctor", data.DoctorId);
+                    cmd.Parameters.AddWithValue("@visit_date", data.DateVisit);
+                    cmd.Parameters.AddWithValue("@descr", tbDescr.Text);
+                    cmd.Parameters.AddWithValue("@image", filename);
+                    cmd.Parameters.AddWithValue("@card", data.CardNumber);
+
+                    cmd.ExecuteNonQuery();
+
+                    Session.Remove("RegForm");
+                    Response.Redirect("~/VisitList");
+                }
             }
         }
     }

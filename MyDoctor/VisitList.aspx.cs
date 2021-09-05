@@ -16,5 +16,20 @@ namespace MyDoctor
                 Response.Redirect("~/Login");
             }
         }
+
+        public String GetDoctor(int doctorId)
+        {
+            switch (doctorId)
+            {
+                case 1:
+                    return "Jan Kowalski";
+                case 2:
+                    return "Janina Zientek";
+                case 3:
+                    return "Mirosław Baka";
+                default:
+                    return "---";
+            }
+        }
     }
 }
